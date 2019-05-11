@@ -1,0 +1,38 @@
+easy_admin:
+
+    entities:
+        News:
+            class: App\Entity\SiteNews
+            # file_base_path: 'Public/document'
+            
+            list:
+                max_results: 10
+                label: 'News du site'
+                help: 'Ajouter et supprimer ou modifier une news'
+                actions:
+                  - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-warning'}
+                  - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}
+                fields:
+                    - { property: 'title', label: 'Titre' }
+                    - { property: 'contenue', label: 'Contenue' }
+                    - { property: 'auteur', label: 'Auteur' }
+                    - { property: 'createdAt', label: 'Date' }
+                    - { property: 'categorie', label: "Categorie" }
+                    
+            form:
+                fields:
+                    - { property: 'title', label: 'Titre de la News' }
+                    - { property: 'contenue', label: 'Contenue court de la news' }
+                    - { property: 'contenueLong', type: 'text', label: 'Contenue complet de la news' }
+                    - { property: 'auteur', label: 'Nom de la personne qui crée la news' }
+                    - { property: 'createdAt', label: 'Date de la News' }
+                    - { property: 'categorie', label: "Categorie de la News ['INFO,BUG,MAJ,PATCHNOTE']" }
+            new:
+                title:  'Ajouter une News'
+                form_options: { validation_groups: ['Default', 'Customer'] }
+            edit:
+                title:  'Modifier la News'
+                form_options: { validation_groups: ['Default'] }
+        
+        
+        
