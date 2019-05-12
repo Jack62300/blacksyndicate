@@ -17,8 +17,8 @@ class IndexController extends AbstractController
     public function index(SiteNewsRepository $repo)
     {
         $news = new SiteNews();
-        $limite = 3;
-        $news = $repo->findAll($limite,'DESC');
+        $offset = null;
+        $news = $repo->findBy(array(), array('id' => "DESC"), 3, $offset);
         return $this->render('index/index.html.twig', [
             'news' => $news,
         ]);
@@ -46,7 +46,6 @@ class IndexController extends AbstractController
         $rules = $repository->findAll();
         return $this->render('index/info.html.twig',[
             'rules' => $rules,
-            'ruless' => $rules2
         ]);
     }
 }
