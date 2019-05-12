@@ -43,12 +43,7 @@ class IndexController extends AbstractController
     public function info(RulesRepository $repository)
     {
         $rules = new Rules();
-        $rules2 = new Rules();
-        $rules3 = new Rules();
         $rules = $repository->findAll();
-        $rules2 = $repository->findBy(
-            ['categorie' => 'Règles Générales']
-        );
         return $this->render('index/info.html.twig',[
             'rules' => $rules,
             'ruless' => $rules2
