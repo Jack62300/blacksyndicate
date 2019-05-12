@@ -1,0 +1,162 @@
+easy_admin:
+    design:
+            
+            menu:
+
+                - label: 'Compte'
+                  icon: 'graduation-cap'
+                  children:
+                      - {entity: 'Users',class: 'submenu', label: 'liste des Utilisateurs', icon: 'graduation-cap'}
+
+                - label: 'Site'
+                  icon: 'newspaper-o'
+                  children:
+                      - { entity: 'News', Label: 'Question', icon: 'file'}
+                      - { entity: 'Reglement', Label: 'Réglement', icon: 'tasks'}
+                - label: 'Job'
+                  icon: 'newspaper-o'
+                  children:
+                      - { entity: 'Jobs', Label: 'Job en Jeux', icon: 'file'}
+
+            assets:
+                css:
+                    # HTTP protocol-relative URL
+                    - 'admin/css/style.css'
+            form_theme:
+                # - 'VichUploaderBundle:Form:fields.html.twig'
+    entities:
+        Users:
+            class: App\Entity\Users
+            # file_base_path: 'Public/document'
+            
+            list:
+                max_results: 10
+                title: "Liste des Utilisateurs"
+                help: 'Ajouter et supprimer ou modifier un Compte serveur'
+                edit:
+                    actions: ['show', '-delete']
+                list:
+                    actions: ['edit', 'search', '-delete']
+                actions:
+                  - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-warning'}
+                  - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}
+                fields:
+                    - { property: 'firstname', label: 'Prenom' }
+                    - { property: 'lastname', label: 'Nom' }
+                    - { property: 'money', label: 'Argent en poche' }
+                    - { property: 'job', label: 'Job' }
+                    - { property: 'jobGrade', label: 'Grade du Job' }
+                    - { property: 'bank', label: "Argent en Banque"}
+                    - { property: 'permissionLevel', label: "Level Admin" }
+                    - { property: 'group', label: "Groupe Admin" }
+                    - { property: 'phoneNumber', label: "Numéro de téléphone" }
+                    
+            form:
+                title: "Ajouter un Utilisateurs"
+                fields:
+                    - { property: 'identifier', label: 'Steam ID' }
+                    - { property: 'money', label: 'Argent en poche' }
+                    - { property: 'job', label: 'Job' }
+                    - { property: 'jobGrade', label: 'Grade du Job' }
+                    - { property: 'bank', label: "Argent en Banque" }
+                    - { property: 'permissionLevel', label: "Level Admin" }
+                    - { property: 'group', label: "Groupe Admin" }
+                    - { property: 'phoneNumber', label: "Numéro de téléphone" }
+            new:
+                title:  'Ajouter un utilisateur'
+                form_options: { validation_groups: ['Default', 'Customer'] }
+            edit:
+                title:  "Modifier l'utilisateur"
+                form_options: { validation_groups: ['Default'] }
+            
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        News:
+            class: App\Entity\SiteNews
+            # file_base_path: 'Public/document'
+            
+            list:
+                max_results: 10
+                title: "Liste des News"
+                help: 'Ajouter et supprimer ou modifier une news ( categorie info == Actualiter , danger == Patchnote, warning == correction de bug, success == Mise à jour '
+                actions:
+                  - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-warning'}
+                  - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}
+                fields:
+                    - { property: 'title', label: 'Titre' }
+                    - { property: 'contenue', label: 'Contenue' }
+                    - { property: 'auteur', label: 'Auteur' }
+                    - { property: 'createdAt', label: 'Date' }
+                    - { property: 'categorie', label: "Categorie" }
+                    
+            form:
+                fields:
+                    - { property: 'title', label: 'Titre de la News' }
+                    - { property: 'contenue', label: 'Contenue court de la news' }
+                    - { property: 'contenueLong', type: 'text', label: 'Contenue complet de la news' }
+                    - { property: 'auteur', label: 'Nom de la personne qui crée la news' }
+                    - { property: 'createdAt', label: 'Date de la News' }
+                    - { property: 'categorie', label: "Categorie de la News ['info,warning,danger,success']" }
+            new:
+                title:  'Ajouter une News'
+                form_options: { validation_groups: ['Default', 'Customer'] }
+            edit:
+                title:  'Modifier la News'
+                form_options: { validation_groups: ['Default'] }
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        Jobs:
+            class: App\Entity\Jobs
+            # file_base_path: 'Public/document'
+            
+            list:
+                max_results: 10
+                title: "Liste des Jobs"
+                help: 'Liste des Jobs sur le serveur '
+                actions:
+                  - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-warning'}
+                  - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}
+                fields:
+                    - { property: 'name', label: 'Nom serveur du Job' }
+                    - { property: 'Label', label: 'Nom rp du Jobs' }
+                    - { property: 'whitelisted', label: 'Sur candidature'}
+                    
+            form:
+                fields:
+                    - { property: 'name', label: 'Nom serveur du Job' }
+                    - { property: 'Label', label: 'Nom rp du Jobs' }
+                    - { property: 'whitelisted', label: 'Sur candidature'}
+            new:
+                title:  'Ajouter un Job'
+                form_options: { validation_groups: ['Default', 'Customer'] }
+            edit:
+                title:  'Modifier un Job'
+                form_options: { validation_groups: ['Default'] }
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        Reglement:
+            class: App\Entity\Rules
+            # file_base_path: 'Public/document'
+            
+            list:
+                max_results: 10
+                title: "Réglement serveur"
+                help: 'Liste des régles du serveur '
+                actions:
+                  - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-warning'}
+                  - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}
+                fields:
+                    - { property: 'name', label: 'Nom' }
+                    - { property: 'contenue', label: 'Régle' }
+                    - { property: 'categorie', label: 'Catégorie de la régle' }
+                    
+            form:
+                fields:
+                    - { property: 'name', label: 'Nom', type: 'text' }
+                    - { property: 'contenue', label: 'Régle', type: 'textarea' }
+                    - { property: 'categorie', label: 'Catégorie de la régle' }
+            new:
+                title:  'Ajouter un Job'
+                form_options: { validation_groups: ['Default', 'Customer'] }
+            edit:
+                title:  'Modifier un Job'
+                form_options: { validation_groups: ['Default'] }
+
