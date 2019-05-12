@@ -168,7 +168,7 @@ easy_admin:
             
             list:
                 max_results: 10
-                title: "Service public / job / activiter"
+                title: "Service public / job / activiter / loisir"
                 help: 'Liste des régles du serveur '
                 actions:
                   - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-warning'}
