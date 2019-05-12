@@ -108,8 +108,7 @@
                     <img class="card-img-top" src="{{ vich_uploader_asset(service, 'imageFile') }}" alt="{{ service.title }}">
                     <div class="card-body">
                         <h2 class="card-title">{{ service.title }}</h2>
-                        <h6 class="card-subtitle mb-2 text-muted">Recrutement: <strong {% if service.recrutement == true %} id="on" {% else %} id="off" {% endif %}>{% if service.title == true %}Ouvert {% else %} Fermer {% endif %}</strong></h6>
-
+                        <h6 class="card-subtitle mb-2 text-muted">Recrutement: {% if service.recrutement == true %}<span style="min-width: 50px; text-align:center; color: black;" class="badge badge-success">Ouvert</span> {% elseif service.recrutement == null %} <span style="min-width: 50px; text-align:center; color: black;"class="badge badge-danger">Fermer</span> {% endif %}</h6>
                         <p class="card-text">{{ service.contenue }}
                         </p>
                     </div>
@@ -131,7 +130,7 @@
                     <img class="card-img-top" src="{{ vich_uploader_asset(service, 'imageFile') }}" alt="{{ service.title }}">
                     <div class="card-body">
                         <h3 class="card-title">{{ service.title }}</h3>
-                        <h6 class="card-subtitle mb-2 text-muted">Recrutement: <strong {% if service.recrutement == true %} id="on" {% else %} id="off" {% endif %}>{% if service.title == true %}Ouvert {% else %} Fermer {% endif %}</strong></h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Recrutement: {% if service.recrutement == true %}<span style="min-width: 50px; text-align:center; color: black;" class="badge badge-success">Ouvert</span> {% elseif service.recrutement == null %} <span style="min-width: 50px; text-align:center; color: black;"class="badge badge-danger">Fermer</span> {% endif %}</h6>
 
                         <p class="card-text">{{ service.contenue }}</p>
                     </div>

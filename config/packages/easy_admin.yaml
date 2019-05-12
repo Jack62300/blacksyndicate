@@ -1,4 +1,8 @@
 easy_admin:
+    site_name: '<img class="logo" src="logo.png" />'
+    user:
+        display_name: true
+        display_avatar: false
     design:
             
             menu:
@@ -23,6 +27,9 @@ easy_admin:
                 css:
                     # HTTP protocol-relative URL
                     - 'admin/css/style.css'
+                    - '//fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic'
+
+
             form_theme:
                 # - 'VichUploaderBundle:Form:fields.html.twig'
     entities:
@@ -177,7 +184,7 @@ easy_admin:
                     - { property: 'title', label: 'Nom' }
                     - { property: 'imageFile', type: 'vich_image', template: 'vich_uploader_image.html.twig' }
                     - { property: 'recrutement', label: 'Recrutement Ouvert ?' }
-                    - { property: 'contenue', label: 'Contenue'}
+                    - { property: 'contenue', label: 'Contenue', type: 'FOS\CKEditorBundle\Form\Type\CKEditorType'}
                     - { property: 'categorie'}
                     
             form:
