@@ -13,6 +13,7 @@ easy_admin:
                   children:
                       - { entity: 'News', Label: 'Question', icon: 'file'}
                       - { entity: 'Reglement', Label: 'Réglement', icon: 'tasks'}
+                      - { entity: 'Service', Label: 'Service / job / Activiter', icon: 'tasks'}
                 - label: 'Job'
                   icon: 'newspaper-o'
                   children:
@@ -153,6 +154,39 @@ easy_admin:
                     - { property: 'name', label: 'Nom', type: 'text' }
                     - { property: 'contenue', label: 'Régle', type: 'textarea' }
                     - { property: 'categorie', label: 'Catégorie de la régle' }
+                    - { property: 'categorie', type: 'choice', type_options: {choices: {'Lexique':'Lexique', 'Règles Générales':'Règles Générales', 'Règles de Communication':'Règles de Communication','Règles de Réanimation':'Règles de Réanimation'}}}
+            new:
+                title:  'Ajouter un Job'
+                form_options: { validation_groups: ['Default', 'Customer'] }
+            edit:
+                title:  'Modifier un Job'
+                form_options: { validation_groups: ['Default'] }
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        Service:
+            class: App\Entity\Service
+            # file_base_path: 'Public/document'
+            
+            list:
+                max_results: 10
+                title: "Service public / job / activiter"
+                help: 'Liste des régles du serveur '
+                actions:
+                  - {name: 'edit', icon: 'pencil', label: false, css_class: 'btn btn-warning'}
+                  - {name: 'delete', icon: 'trash', label: false, css_class: 'btn btn-danger'}
+                fields:
+                    - { property: 'title', label: 'Nom' }
+                    - { property: 'imageFile', type: 'vich_image', template: 'vich_uploader_image.html.twig' }
+                    - { property: 'recrutement', label: 'Recrutement Ouvert ?' }
+                    - { property: 'contenue', label: 'Contenue'}
+                    - { property: 'categorie'}
+                    
+            form:
+                fields:
+                    - { property: 'title', label: 'Nom' }
+                    - { property: 'imageFile', type: 'vich_image', template: 'vich_uploader_image.html.twig' }
+                    - { property: 'recrutement', label: 'Recrutement Ouvert ?' }
+                    - { property: 'contenue', label: 'Contenue'}
+                    - { property: 'categorie', type: 'choice', type_options: {choices: {'Public':'Services publics', 'Privée':'Services privés', 'Activités illégal':'ActivitésIllégales','Activités':'Loisir'}}}
             new:
                 title:  'Ajouter un Job'
                 form_options: { validation_groups: ['Default', 'Customer'] }

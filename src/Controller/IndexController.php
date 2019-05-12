@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Rules;
+use App\Entity\Service;
 use App\Entity\SiteNews;
 use App\Repository\RulesRepository;
+use App\Repository\ServiceRepository;
 use App\Repository\SiteNewsRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -40,12 +42,19 @@ class IndexController extends AbstractController
     /**
      * @Route("/info", name="information")
      */
-    public function info(RulesRepository $repository)
+    public function info(RulesRepository $repository,ServiceRepository $repo)
     {
+        // Réglement 
         $rules = new Rules();
         $rules = $repository->findAll();
+        // -----------------------------
+        // Service 
+        $service = new Service();
+        $service = $repo->findAll();
+        // -----------------------------
         return $this->render('index/info.html.twig',[
             'rules' => $rules,
+            'service' => $service,
         ]);
     }
 }
